@@ -1,0 +1,85 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+
+
+<link rel="import" href="../shared-styles.html">
+
+<dom-module id="blog-landing">
+    <template>
+        <style include="shared-styles">
+             :host {
+                display: block;
+
+                padding: 10px;
+            }
+
+            paper-card {
+                margin: 2% 15%;
+                min-width: 70%;
+
+                --paper-card-header: {
+                    background-color: var(--paper-lime-500);
+                }
+            }
+
+            paper-button {
+                float: right;
+                margin-bottom: 5px;
+                background-color: var(--paper-lime-500);
+
+                --paper-button-raised-keyboard-focus: {
+                    background-color: var(--paper-lime-a200) !important;
+                    color: white !important;
+                };
+                
+            }
+
+            paper-button:hover {
+                background-color: var(--paper-lime-100);
+            }
+        </style>
+
+        <paper-card heading="[[title]]">
+            <div class="card-content">
+                [[article]]
+            </div>
+            <div class="card-actions justified">
+                <paper-button raised>Read more</paper-button>
+            </div>
+        </paper-card>
+
+        <paper-card heading="[[title]]">
+            <div class="card-content">
+                [[article]]
+            </div>
+            <div class="card-actions right">
+                <paper-button>Read more</paper-button>
+            </div>
+        </paper-card>
+
+        <paper-card heading="[[title]]">
+            <div class="card-content">
+                [[article]]
+            </div>
+            <div class="card-actions">
+                <paper-button>Read more</paper-button>
+            </div>
+        </paper-card>
+    </template>
+
+    <script>
+        class BlogLanding extends Polymer.Element {
+            static get is() { return 'blog-landing'; }
+
+            connectedCallback() {
+                super.connectedCallback();
+
+                this.title = 'Hello World !';
+                this.article = 'This is my first blog post on my fresh blogging site built with Polymer 2! I home you will like it ! Jeff';
+            }
+        }
+
+        window.customElements.define(BlogLanding.is, BlogLanding);
+    </script>
+</dom-module>
