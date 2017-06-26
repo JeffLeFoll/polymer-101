@@ -39,5 +39,5 @@ The REST API is located here [https://xxxx](https://xxxx).
 The API exposes the folowing ressources:  
 
 ## Step 4 - The langing page listing all the blog post
-## Step 5 - Displaying the blog post details
-## Step 6 - Writing new blog post
+## Step 5 - Writing new blog post
+## Step 6 - Displaying the blog post details

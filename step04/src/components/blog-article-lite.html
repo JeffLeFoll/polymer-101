@@ -1,0 +1,65 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../bower_components/juicy-markdown/juicy-markdown.html">
+
+<link rel="import" href="../shared-styles.html">
+
+<dom-module id="blog-article-lite">
+    <template>
+        <style include="shared-styles">
+             :host {
+                display: block;
+                padding: 10px;
+            }
+
+            paper-card {
+                margin: 2% 15%;
+                min-width: 70%;
+
+                --paper-card-header: {
+                    background-color: var(--paper-lime-500);
+                }
+            }
+
+            paper-button {
+                float: right;
+                margin-bottom: 5px;
+                background-color: var(--paper-lime-500);
+
+                --paper-button-raised-keyboard-focus: {
+                    background-color: var(--paper-lime-a200) !important;
+                    color: white !important;
+                }
+                ;
+            }
+
+            paper-button:hover {
+                background-color: var(--paper-lime-100);
+            }
+        </style>
+
+        <paper-card heading="[[blogPost.titre]] - [[blogPost.dateCreation]]">
+            <div class="card-content">
+                <juicy-markdown ghcss="true" value="[[blogPost.message]]"></juicy-markdown>
+            </div>
+            <div class="card-actions justified">
+                <paper-button raised>Read more</paper-button>
+            </div>
+        </paper-card>
+    </template>
+
+    <script>
+        class BlogArticleLite extends Polymer.Element {
+            static get is() { return 'blog-article-lite'; }
+
+            static get properties() {
+                return {
+                    blogPost: Object,
+                };
+            }
+        }
+
+        window.customElements.define(BlogArticleLite.is, BlogArticleLite);
+    </script>
+</dom-module>

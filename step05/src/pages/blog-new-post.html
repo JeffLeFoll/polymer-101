@@ -1,0 +1,74 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/juicy-markdown-editor/juicy-markdown-editor.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+
+<link rel="import" href="../shared-styles.html">
+
+<dom-module id="blog-new-post">
+    <template>
+        <style include="shared-styles">
+             :host {
+                display: block;
+                padding: 10px;
+            }
+
+            paper-card {
+                margin: 2% 15%;
+                min-width: 70%;
+
+                --paper-card-header: {
+                    background-color: var(--paper-lime-500);
+                }
+            }
+        </style>
+
+        <paper-card heading="Nouvel article:">
+            <div class="card-content">
+                <paper-input label="Titre" value="{{titre}}"></paper-input>
+
+                <juicy-markdown-editor placeholder="Enter markdown text" ghcss value="{{message}}"></juicy-markdown-editor>
+
+                <paper-input label="Auteur" value="{{auteur}}"></paper-input>
+
+            </div>
+            <div class="card-actions justified">
+            </div>
+        </paper-card>
+
+    </template>
+
+    <script>
+        class BlogNewPost extends Polymer.Element {
+            static get is() { return 'blog-new-post'; }
+
+            connectedCallback() {
+                super.connectedCallback();
+
+                let nouveauPost = {
+                    titre: this.titre,
+                    message: this.message,
+                    auteur: this.auteur
+                }
+
+                fetch('https://polymer-101-workshop.cleverapps.io/api/blogpost', {
+                    method: "POST",
+                    body: JSON.stringify(nouveauPost),
+                    headers: { "Content-Type": "application/json" }
+                })
+                    .then(this.checkStatus)
+                    .catch(error => new Error(error));
+            }
+
+            checkStatus(response) {
+                if (response.status >= 200 && response.status < 300) {
+                    return Promise.resolve(response);
+                }
+                return Promise.reject(new Error(response.satusText));
+            }
+        }
+
+
+        window.customElements.define(BlogNewPost.is, BlogNewPost);
+    </script>
+</dom-module>
