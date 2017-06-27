@@ -1,7 +1,8 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../bower_components/paper-card/paper-card.html">
-<link rel="import" href="../../bower_components/juicy-markdown-editor/juicy-markdown-editor.html">
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-textarea.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
 
 <link rel="import" href="../shared-styles.html">
 
@@ -23,16 +24,20 @@
             }
         </style>
 
+        <app-route route="{{route}}"></app-route>
+
         <paper-card heading="Nouvel article:">
             <div class="card-content">
                 <paper-input label="Titre" value="{{titre}}"></paper-input>
 
-                <juicy-markdown-editor placeholder="Enter markdown text" ghcss value="{{message}}"></juicy-markdown-editor>
+                <paper-textarea label="Message" value="{{message}}" rows="20"></paper-textarea>
 
                 <paper-input label="Auteur" value="{{auteur}}"></paper-input>
 
             </div>
             <div class="card-actions justified">
+                <paper-button raised on-click="clear">Annuler</paper-button>
+                <paper-button raised on-click="enregistrerNouveauPost">Enregistrer</paper-button>
             </div>
         </paper-card>
 
@@ -42,8 +47,8 @@
         class BlogNewPost extends Polymer.Element {
             static get is() { return 'blog-new-post'; }
 
-            connectedCallback() {
-                super.connectedCallback();
+
+            enregistrerNouveauPost() {
 
                 let nouveauPost = {
                     titre: this.titre,
@@ -56,18 +61,26 @@
                     body: JSON.stringify(nouveauPost),
                     headers: { "Content-Type": "application/json" }
                 })
-                    .then(this.checkStatus)
+                    .then((response) => this.checkStatus(response))
+                    .then(() => this.set('route.path', '/landing/'))
                     .catch(error => new Error(error));
             }
 
             checkStatus(response) {
                 if (response.status >= 200 && response.status < 300) {
+                    this.clear();
                     return Promise.resolve(response);
                 }
                 return Promise.reject(new Error(response.satusText));
             }
-        }
 
+            clear() {
+                this.titre = '';
+                this.message = '';
+                this.auteur = '';
+            }
+
+        }
 
         window.customElements.define(BlogNewPost.is, BlogNewPost);
     </script>
