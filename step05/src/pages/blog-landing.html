@@ -27,12 +27,14 @@
             
             static get observers() {
                 return [
-                    '_locationChanged(routeData.page)'
+                    '_routeChanged(route.*)'
                 ]
             }
 
-            _locationChanged(pageData) {
-                this._loadData()
+            _routeChanged(changeRecord) {
+                if (changeRecord.value.path === '/landing') {
+                    this._loadData()
+                }
             }
 
             connectedCallback() {

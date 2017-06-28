@@ -36,6 +36,13 @@
             paper-button:hover {
                 background-color: var(--paper-lime-100);
             }
+
+            a,
+            a:visited,
+            a:hover,
+            a:active {
+                color: inherit;
+            }
         </style>
 
         <paper-card heading="[[blogPost.title]] - [[blogPost.creationDate]]">
@@ -43,7 +50,7 @@
                 <span>[[blogPost.article]]</span>
             </div>
             <div class="card-actions justified">
-                <span>[[blogPost.autor]]</span>
+                <span>Written by [[blogPost.autor]]</span>
                 <paper-button raised>Read more</paper-button>
             </div>
         </paper-card>

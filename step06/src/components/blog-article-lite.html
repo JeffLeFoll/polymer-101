@@ -11,6 +11,13 @@
                 display: block;
                 padding: 10px;
             }
+
+            a,
+            a:visited,
+            a:hover,
+            a:active {
+                color: inherit;
+            }
         </style>
 
         <paper-card heading="[[blogPost.title]] - [[blogPost.creationDate]]">
@@ -18,7 +25,7 @@
                 <span>[[blogPost.article]]</span>
             </div>
             <div class="card-actions justified">
-                <span>[[blogPost.autor]]</span>
+                <span>Written by [[blogPost.autor]]</span>
                 <a href="/detail/[[blogPost._id]]">
                     <paper-button raised>Read more</paper-button>
                 </a>
