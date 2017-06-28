@@ -11,31 +11,6 @@
                 display: block;
                 padding: 10px;
             }
-
-            paper-card {
-                margin: 2% 15%;
-                min-width: 70%;
-
-                --paper-card-header: {
-                    background-color: var(--paper-lime-500);
-                }
-            }
-
-            paper-button {
-                float: right;
-                margin-bottom: 5px;
-                background-color: var(--paper-lime-500);
-
-                --paper-button-raised-keyboard-focus: {
-                    background-color: var(--paper-lime-a200) !important;
-                    color: white !important;
-                }
-                ;
-            }
-
-            paper-button:hover {
-                background-color: var(--paper-lime-100);
-            }
         </style>
 
         <paper-card heading="[[blogPost.title]] - [[blogPost.creationDate]]">
@@ -44,7 +19,9 @@
             </div>
             <div class="card-actions justified">
                 <span>[[blogPost.autor]]</span>
-                <paper-button raised>Read more</paper-button>
+                <a href="/detail/[[blogPost._id]]">
+                    <paper-button raised>Read more</paper-button>
+                </a>
             </div>
         </paper-card>
     </template>

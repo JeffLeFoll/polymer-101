@@ -38,7 +38,7 @@
 
         <paper-card heading="New blog entry:">
             <div class="card-content">
-                <paper-input label="Title" value="{{title}}"></paper-input>
+                <paper-input label="Title" value="{{articleTitle}}"></paper-input>
 
                 <paper-textarea label="Article" value="{{article}}" rows="8"></paper-textarea>
 
@@ -59,7 +59,7 @@
 
             save() {
                 let blogPost = {
-                    title: this.title,
+                    title: this.articleTitle,
                     article: this.article,
                     autor: this.autor
                 }
@@ -83,8 +83,8 @@
             }
 
             clear() {
-                this.title = '';
-                this.message = '';
+                this.articleTitle = '';
+                this.article = '';
                 this.autor = '';
             }
 

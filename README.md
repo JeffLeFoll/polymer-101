@@ -35,7 +35,7 @@ Then if we have time we will also:
 - add & display comments in blog post detail
 
 ### API
-The REST API is located here [https://xxxx](https://xxxx).
+The REST API is located here [https://polymer-101-workshop.cleverapps.io/api/blogpost](https://polymer-101-workshop.cleverapps.io/api/blogpost) (unavailable outside workshop event, check the source code if you need it).
 The API exposes the folowing ressources:  
 
 ## Step 4 - The langing page listing all the blog post

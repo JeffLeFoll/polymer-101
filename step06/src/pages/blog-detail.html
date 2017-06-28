@@ -1,0 +1,80 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-textarea.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+
+<link rel="import" href="../shared-styles.html">
+
+<dom-module id="blog-detail">
+    <template>
+        <style include="shared-styles">
+             :host {
+                display: block;
+                padding: 10px;
+            }
+
+            paper-button.red {
+                float: right;
+                margin-bottom: 5px;
+                background-color: var(--paper-red-500);
+                color: white !important;
+
+                --paper-button-raised-keyboard-focus: {
+                    background-color: var(--paper-red-a200) !important;
+                    color: white !important;
+                }
+                ;
+            }
+
+            paper-button.red:hover {
+                background-color: var(--paper-red-100);
+                color: black !important;
+            }
+        </style>
+
+        <app-location route="{{route}}" url-space-regex="^[[rootPath]]"></app-location>
+        <app-route route="{{route}}" pattern="[[rootPath]]:page/:postId" data="{{routeData}}" tail="{{subroute}}"></app-route>
+
+        <paper-card heading="Toto:">
+            <div class="card-content">
+                <paper-input label="Title" value="{{blogPost.title}}"></paper-input>
+
+                <paper-textarea label="Article" always-floating-label value="{{blogPost.article}}"></paper-textarea>
+
+                <paper-input label="Autor" value="{{blogPost.autor}}"></paper-input>
+
+            </div>
+            <div class="card-actions justified">
+                <paper-button raised on-click="edit">Edit</paper-button>
+                <paper-button raised on-click="save" class="red">Delete</paper-button>
+            </div>
+        </paper-card>
+
+    </template>
+
+    <script>
+        class BlogDetail extends Polymer.Element {
+            static get is() { return 'blog-detail'; }
+
+            static get observers() {
+                return [
+                    '_locationChanged(routeData.postId)'
+                ]
+            }
+
+            _locationChanged(postId) {
+                this._loadData(postId)
+            }
+
+            _loadData(postId) {
+                fetch('https://polymer-101-workshop.cleverapps.io/api/blogpost/' + postId)
+                    .then(response => response.json().then(json => this.blogPost = json || {}))
+                    .catch(error => console.log('Error while loading blog posts: ' + error.message));
+            }
+
+        }
+
+        window.customElements.define(BlogDetail.is, BlogDetail);
+    </script>
+</dom-module>
