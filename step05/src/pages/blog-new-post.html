@@ -14,30 +14,40 @@
                 padding: 10px;
             }
 
-            paper-card {
-                margin: 2% 15%;
-                min-width: 70%;
+            paper-button.red {
+                float: right;
+                margin-bottom: 5px;
+                background-color: var(--paper-red-500);
+                color: white !important;
 
-                --paper-card-header: {
-                    background-color: var(--paper-lime-500);
+                --paper-button-raised-keyboard-focus: {
+                    background-color: var(--paper-red-a200) !important;
+                    color: white !important;
                 }
+                ;
+            }
+
+            paper-button.red:hover {
+                background-color: var(--paper-red-100);
+                color: black !important;
             }
         </style>
 
-        <app-route route="{{route}}"></app-route>
+        <app-location route="{{route}}" url-space-regex="^[[rootPath]]"></app-location>
+        <app-route route="{{route}}" pattern="[[rootPath]]:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
 
         <paper-card heading="Nouvel article:">
             <div class="card-content">
                 <paper-input label="Titre" value="{{titre}}"></paper-input>
 
-                <paper-textarea label="Message" value="{{message}}" rows="20"></paper-textarea>
+                <paper-textarea label="Message" value="{{message}}" rows="8"></paper-textarea>
 
                 <paper-input label="Auteur" value="{{auteur}}"></paper-input>
 
             </div>
             <div class="card-actions justified">
-                <paper-button raised on-click="clear">Annuler</paper-button>
                 <paper-button raised on-click="enregistrerNouveauPost">Enregistrer</paper-button>
+                <paper-button raised on-click="clear" class="red">Annuler</paper-button>
             </div>
         </paper-card>
 
@@ -62,7 +72,7 @@
                     headers: { "Content-Type": "application/json" }
                 })
                     .then((response) => this.checkStatus(response))
-                    .then(() => this.set('route.path', '/landing/'))
+                    .then(() => this.set('route.path', '/landing'))
                     .catch(error => new Error(error));
             }
 

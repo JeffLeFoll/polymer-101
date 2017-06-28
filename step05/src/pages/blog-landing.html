@@ -13,7 +13,7 @@
                 padding: 10px;
             }
         </style>
-        <app-location route="{{route}}"></app-location>
+        <app-location route="{{route}}" url-space-regex="^[[rootPath]]"></app-location>
 
         <template is="dom-repeat" items="{{blogPosts}}" as="blogPost">
             <blog-article-lite blog-post="[[blogPost]]"></blog-article-lite>
