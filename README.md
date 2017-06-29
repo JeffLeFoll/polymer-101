@@ -51,15 +51,18 @@ Using git, in your terminal of choice, execute the following command:
 
 ## Step 3 - The langing page  
 We will start by creating a page that list all the Blog Post's and limit the article displayed to 140 characters.  
+
 ![step03](imgs/step03.jpg)
 
 ## Step 4 - Writing new blog post
 In this step we will create a new page, to write a new blog post and come back to the landing page with the newly post displayed.  
+
 ![step04](imgs/step04.jpg)
 
 ## Step 5 - Displaying the blog post details
 Now we can display a list of blog post, we can write new one.  
 Lets create a page to display the details of a blog post.  
 We will also let the user edit this blog entry.  
+
 ![step05](imgs/step05.jpg)
 
