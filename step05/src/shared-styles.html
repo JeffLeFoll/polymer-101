@@ -38,6 +38,42 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       paper-card paper-button:hover {
         background-color: var(--paper-lime-100);
       }
+
+      paper-button.red {
+        float: right;
+        margin-bottom: 5px;
+        background-color: var(--paper-red-500);
+        color: white !important;
+
+        --paper-button-raised-keyboard-focus: {
+          background-color: var(--paper-red-a200) !important;
+          color: white !important;
+        }
+        ;
+      }
+
+      paper-button.red:hover {
+        background-color: var(--paper-red-100);
+        color: black !important;
+      }
+
+      paper-button.green {
+        float: right;
+        margin-bottom: 5px;
+        background-color: var(--paper-green-500);
+        color: white !important;
+
+        --paper-button-raised-keyboard-focus: {
+          background-color: var(--paper-green-200) !important;
+          color: white !important;
+        }
+        ;
+      }
+
+      paper-button.green:hover {
+        background-color: var(--paper-green-100);
+        color: black !important;
+      }
     </style>
   </template>
 </dom-module>

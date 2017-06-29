@@ -1,13 +1,42 @@
 # polymer-101
 Project for a mini "workshop" to discover Polymer  
 
-## Step 0 - Setup:  
+## Setup:  
 For this workshop you need to have the following tools :
 - Node.js (6.x ou 8.x)
 - Polymer-cli (npm install -g polymer-cli / yarn global add polymer-cli)
 - An IDE (Webstorm, Atom or Visual Studio Code [with the Polymer-IDE extension])
 - Google Chrome ( stable or later) or Chromium
 - Lighthouse plug-in for Chrome
+
+## Workshop goal
+The goal of this workshop is to discover Polymer 2 and the PWA principles by building a Blog site.  
+The REST API Backend is provided so we will not cover this part (source code available here on [github.com/JeffLeFoll/polymer-101-backend](https://github.com/JeffLeFoll/polymer-101-backend)).
+
+### Objectives
+In this workshop you will learn to:
+- init a new Polymer 2 PWA
+- create pages & components
+- use the Fetch API and the iron-ajax component
+- use the app-route component to navigate in your SPA 
+- ...
+
+### API
+The REST API is located here [https://polymer-101-workshop.cleverapps.io/api/blogpost](https://polymer-101-workshop.cleverapps.io/api/blogpost) (unavailable outside workshop event, check the source code if you need it).  
+The API exposes the folowing ressources: 
+```
+GET    / 
+GET    /api/blogpost 
+POST   /api/blogpost
+PUT    /api/blogpost 
+GET    /api/blogpost/:id
+DELETE /api/blogpost/:id 
+GET    /api/blogpost/autor/:name 
+GET    /api/blogpost/:blogId/comment 
+POST   /api/blogpost/:blogId/comment 
+GET    /api/blogpost/:blogId/comment/:id 
+DELETE /api/blogpost/:blogId/comment/:id
+``` 
 
 ## Step 1 - Project init: 
 **When the Polymer Start Kit will be release**  
@@ -20,24 +49,17 @@ Using git, in your terminal of choice, execute the following command:
 
 ## Step 2 - Discovering the PSK
 
-## Step 3 - Workshop goal
-The goal of this workshop is to discover Polymer 2 and the PWA principles by building a Blog site.  
-The REST API Backend is provided so we will not cover this part (source code available here on [github.com/JeffLeFoll/polymer-101-backend](https://github.com/JeffLeFoll/polymer-101-backend)).
+## Step 3 - The langing page  
+We will start by creating a page that list all the Blog Post's and limit the article displayed to 140 characters.  
+![step03](imgs/step03.jpg)
 
-### Objectives
-In this workshop we will build :
-- a page listing all blog posts (date, title, 140 first article characters).
-- a page showing the blog post details
-- a page to write a new blog post  
+## Step 4 - Writing new blog post
+In this step we will create a new page, to write a new blog post and come back to the landing page with the newly post displayed.  
+![step04](imgs/step04.jpg)
 
-Then if we have time we will also: 
-- make the writing of blog post working offline
-- add & display comments in blog post detail
+## Step 5 - Displaying the blog post details
+Now we can display a list of blog post, we can write new one.  
+Lets create a page to display the details of a blog post.  
+We will also let the user edit this blog entry.  
+![step05](imgs/step05.jpg)
 
-### API
-The REST API is located here [https://polymer-101-workshop.cleverapps.io/api/blogpost](https://polymer-101-workshop.cleverapps.io/api/blogpost) (unavailable outside workshop event, check the source code if you need it).
-The API exposes the folowing ressources:  
-
-## Step 4 - The langing page listing all the blog post
-## Step 5 - Writing new blog post
-## Step 6 - Displaying the blog post details

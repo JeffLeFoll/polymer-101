@@ -3,8 +3,6 @@
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../../bower_components/paper-input/paper-textarea.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
-<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
 
 <link rel="import" href="../shared-styles.html">
 
@@ -15,6 +13,24 @@
                 display: block;
                 padding: 10px;
             }
+
+            paper-button.red {
+                float: right;
+                margin-bottom: 5px;
+                background-color: var(--paper-red-500);
+                color: white !important;
+
+                --paper-button-raised-keyboard-focus: {
+                    background-color: var(--paper-red-a200) !important;
+                    color: white !important;
+                }
+                ;
+            }
+
+            paper-button.red:hover {
+                background-color: var(--paper-red-100);
+                color: black !important;
+            }
         </style>
 
         <app-location route="{{route}}" url-space-regex="^[[rootPath]]"></app-location>
@@ -22,7 +38,7 @@
 
         <paper-card heading="New blog entry:">
             <div class="card-content">
-                <paper-input label="Title" value="{{articleTitle}}"></paper-input>
+                <paper-input label="Title" value="{{title}}"></paper-input>
 
                 <paper-textarea label="Article" value="{{article}}" rows="8"></paper-textarea>
 
@@ -30,8 +46,8 @@
 
             </div>
             <div class="card-actions justified">
-                <paper-button raised on-click="save"><iron-icon icon="save"></iron-icon></paper-button>
-                <paper-button raised on-click="clear" class="red"><iron-icon icon="cancel"></iron-icon></paper-button>
+                <paper-button raised on-click="save">Save</paper-button>
+                <paper-button raised on-click="clear" class="red">Cancel</paper-button>
             </div>
         </paper-card>
 
@@ -43,7 +59,7 @@
 
             save() {
                 let blogPost = {
-                    title: this.articleTitle,
+                    title: this.title,
                     article: this.article,
                     autor: this.autor
                 }
@@ -67,8 +83,8 @@
             }
 
             clear() {
-                this.articleTitle = '';
-                this.article = '';
+                this.title = '';
+                this.message = '';
                 this.autor = '';
             }
 

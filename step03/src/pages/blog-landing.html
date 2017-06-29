@@ -9,11 +9,9 @@
         <style include="shared-styles">
              :host {
                 display: block;
-
                 padding: 10px;
             }
         </style>
-        <app-location route="{{route}}" url-space-regex="^[[rootPath]]"></app-location>
 
         <template is="dom-repeat" items="{{blogPosts}}" as="blogPost">
             <blog-article-lite blog-post="[[blogPost]]"></blog-article-lite>
@@ -24,18 +22,6 @@
     <script>
         class BlogLanding extends Polymer.Element {
             static get is() { return 'blog-landing'; }
-
-            static get observers() {
-                return [
-                    '_routeChanged(route.*)'
-                ]
-            }
-
-            _routeChanged(changeRecord) {
-                if (changeRecord.value.path === '/landing') {
-                    this._loadData()
-                }
-            }
 
             connectedCallback() {
                 super.connectedCallback();

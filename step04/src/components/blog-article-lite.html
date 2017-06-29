@@ -12,31 +12,6 @@
                 padding: 10px;
             }
 
-            paper-card {
-                margin: 2% 15%;
-                min-width: 70%;
-
-                --paper-card-header: {
-                    background-color: var(--paper-lime-500);
-                }
-            }
-
-            paper-button {
-                float: right;
-                margin-bottom: 5px;
-                background-color: var(--paper-lime-500);
-
-                --paper-button-raised-keyboard-focus: {
-                    background-color: var(--paper-lime-a200) !important;
-                    color: white !important;
-                }
-                ;
-            }
-
-            paper-button:hover {
-                background-color: var(--paper-lime-100);
-            }
-
             a,
             a:visited,
             a:hover,
@@ -47,11 +22,10 @@
 
         <paper-card heading="[[blogPost.title]] - [[blogPost.creationDate]]">
             <div class="card-content">
-                <span>[[blogPost.article]]</span>
+                <span>[[_articleExtract()]]</span>
             </div>
             <div class="card-actions justified">
                 <span>Written by [[blogPost.autor]]</span>
-                <paper-button raised>Read more</paper-button>
             </div>
         </paper-card>
     </template>
@@ -64,6 +38,10 @@
                 return {
                     blogPost: Object,
                 };
+            }
+
+            _articleExtract() {
+                return this.blogPost.article.substring(0, 140);
             }
         }
 
