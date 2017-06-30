@@ -2,11 +2,9 @@
 <link rel="import" href="../../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 
-<link rel="import" href="../shared-styles.html">
-
 <dom-module id="blog-article-lite">
     <template>
-        <style include="shared-styles">
+        <style>
              :host {
                 display: block;
                 padding: 10px;
@@ -20,34 +18,11 @@
                     background-color: var(--paper-lime-500);
                 }
             }
-
-            paper-button {
-                float: right;
-                margin-bottom: 5px;
-                background-color: var(--paper-lime-500);
-
-                --paper-button-raised-keyboard-focus: {
-                    background-color: var(--paper-lime-a200) !important;
-                    color: white !important;
-                }
-                ;
-            }
-
-            paper-button:hover {
-                background-color: var(--paper-lime-100);
-            }
-
-            a,
-            a:visited,
-            a:hover,
-            a:active {
-                color: inherit;
-            }
         </style>
 
         <paper-card heading="[[blogPost.title]] - [[blogPost.creationDate]]">
             <div class="card-content">
-                <span>[[_articleExtract()]]</span>
+                <span>[[_limitArticleSize()]]</span>
             </div>
             <div class="card-actions justified">
                 <span>Written by [[blogPost.autor]]</span>
@@ -65,7 +40,7 @@
                 };
             }
 
-            _articleExtract() {
+            _limitArticleSize() {
                 return this.blogPost.article.substring(0, 140);
             }
         }

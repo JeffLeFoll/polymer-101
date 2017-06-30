@@ -1,0 +1,57 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/app-route/app-location.html">
+<link rel="import" href="../components/blog-article-lite.html">
+
+<link rel="import" href="../shared-styles.html">
+
+<dom-module id="blog-landing">
+    <template>
+        <style include="shared-styles">
+             :host {
+                display: block;
+                padding: 10px;
+            }
+
+            paper-card {
+                margin: 2% 15%;
+                min-width: 70%;
+
+                --paper-card-header: {
+                    background-color: var(--paper-lime-500);
+                }
+            }
+        </style>
+
+        <template is="dom-repeat" items="{{blogPosts}}" as="blogPost">
+            <paper-card heading="[[blogPost.title]] - [[blogPost.creationDate]]">
+                <div class="card-content">
+                    <span>[[blogPost.article]]</span>
+                </div>
+                <div class="card-actions justified">
+                    <span>Written by [[blogPost.autor]]</span>
+                </div>
+            </paper-card>
+        </template>
+
+    </template>
+
+    <script>
+        class BlogLanding extends Polymer.Element {
+            static get is() { return 'blog-landing'; }
+
+            connectedCallback() {
+                super.connectedCallback();
+
+                this._loadData();
+            }
+
+            _loadData() {
+                fetch('https://polymer-101-workshop.cleverapps.io/api/blogpost')
+                    .then(response => response.json().then(json => this.blogPosts = json || []))
+                    .catch(error => console.log('Error while loading blog posts: ' + error.message));
+            }
+        }
+
+        window.customElements.define(BlogLanding.is, BlogLanding);
+    </script>
+</dom-module>

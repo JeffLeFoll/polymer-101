@@ -12,17 +12,12 @@
                 padding: 10px;
             }
 
-            a,
-            a:visited,
-            a:hover,
-            a:active {
-                color: inherit;
-            }
+
         </style>
 
         <paper-card heading="[[blogPost.title]] - [[blogPost.creationDate]]">
             <div class="card-content">
-                <span>[[_articleExtract()]]</span>
+                <span>[[_limitArticleSize()]]</span>
             </div>
             <div class="card-actions justified">
                 <span>Written by [[blogPost.autor]]</span>
@@ -40,7 +35,7 @@
                 };
             }
 
-            _articleExtract() {
+            _limitArticleSize() {
                 return this.blogPost.article.substring(0, 140);
             }
         }
