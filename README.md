@@ -39,7 +39,7 @@ DELETE /api/blogpost/:blogId/comment/:id
 ``` 
 
 ## Short note: Project init
-**When the Polymer Start Kit will be release**  
+**When the Polymer Start Kit will be released**  
 Using your terminal of choice, create a folder `polymer-workshop`.  
 Then in this folder execute the following command : `polymer init` and select the `Polymer 2 Start Kit` when prompted.
 
@@ -87,7 +87,12 @@ In the same time we will also add some "logic" by limiting the article text to 1
 ## Step 4 - Writing new blog post
 In this step we will create a new page, to write a new blog post.  
 To do that we will use the Fetch API to do POST request on the backend. 
-Then we will use the [`app-route` component](https://www.webcomponents.org/element/PolymerElements/app-route) to come back to the landing page with the newly post displayed.  
+Then we will use the [`app-route` component](https://www.webcomponents.org/element/PolymerElements/app-route) to come back to the landing page with the newly post displayed.    
+We will also use the following components :
+- [`paper-input` component](https://www.webcomponents.org/element/PolymerElements/paper-input)
+- [`paper-textarea` component](https://www.webcomponents.org/element/PolymerElements/paper-input)
+- [`paper-button` component](https://www.webcomponents.org/element/PolymerElements/paper-button)
+
 
 ![step04](imgs/step04.jpg)
 
@@ -97,7 +102,9 @@ Lets create a page to display the details of a blog post.
 For that we will dive a lot 'deeper' in the [`app-route` component](https://www.webcomponents.org/element/PolymerElements/app-route).
 We will also let the user edit this blog entry.  
 To do that, instead of using the Fetch API to perform a GET reqest on the backend to retrieve the post's data, we will use the [`iron-ajax` component](https://www.webcomponents.org/element/PolymerElements/iron-ajax).  
-Finaly we will use [`iron-icon` component](https://www.webcomponents.org/element/PolymerElements/iron-icon) and [`iron-icons` component](https://www.webcomponents.org/element/PolymerElements/iron-icons) to add some icons on our button instead of text.
+Finaly we will use [`iron-icon` component](https://www.webcomponents.org/element/PolymerElements/iron-icon) and [`iron-icons` component](https://www.webcomponents.org/element/PolymerElements/iron-icons) to add some icons on our button instead of text.  
+
+In the landing page we will also add a [`paper-button` component](https://www.webcomponents.org/element/PolymerElements/paper-button) surronded by a link to navigate to the newly created detail page.
 
 ![step05](imgs/step05.jpg)
 

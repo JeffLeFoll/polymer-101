@@ -5,8 +5,6 @@
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
-<link rel="import" href="../../bower_components/app-route/app-location.html">
-<link rel="import" href="../../bower_components/app-route/app-route.html">
 
 <link rel="import" href="../shared-styles.html">
 
@@ -19,9 +17,6 @@
             }
         </style>
 
-        <app-location route="{{route}}" url-space-regex="^[[rootPath]]"></app-location>
-        <app-route route="{{route}}" pattern="[[rootPath]]:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
-
         <paper-card heading="New blog entry:">
             <div class="card-content">
                 <paper-input label="Title" value="{{articleTitle}}"></paper-input>
@@ -32,8 +27,12 @@
 
             </div>
             <div class="card-actions justified">
-                <paper-button raised on-click="save"><iron-icon icon="save"></iron-icon></paper-button>
-                <paper-button raised on-click="clear" class="red"><iron-icon icon="cancel"></iron-icon></paper-button>
+                <paper-button raised on-click="save">
+                    <iron-icon icon="save"></iron-icon>
+                </paper-button>
+                <paper-button raised on-click="clear" class="red">
+                    <iron-icon icon="cancel"></iron-icon>
+                </paper-button>
             </div>
         </paper-card>
 
@@ -56,7 +55,7 @@
                     headers: { "Content-Type": "application/json" }
                 })
                     .then((response) => this.checkStatus(response))
-                    .then(() => this.set('route.path', '/landing'))
+                    .then(() => this.goBackToLanding())
                     .catch(error => new Error(error));
             }
 
@@ -72,6 +71,11 @@
                 this.articleTitle = '';
                 this.article = '';
                 this.autor = '';
+            }
+
+            goBackToLanding() {
+                window.history.pushState({}, null, '/landing');
+                window.dispatchEvent(new CustomEvent('location-changed'));
             }
 
         }

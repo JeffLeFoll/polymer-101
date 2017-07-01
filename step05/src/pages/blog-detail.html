@@ -4,7 +4,6 @@
 <link rel="import" href="../../bower_components/paper-input/paper-textarea.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
-<link rel="import" href="../../bower_components/app-route/app-location.html">
 <link rel="import" href="../../bower_components/app-route/app-route.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/iron-icons/editor-icons.html">
@@ -21,8 +20,7 @@
             }
         </style>
 
-        <app-location route="{{route}}" url-space-regex="^[[rootPath]]"></app-location>
-        <app-route route="{{route}}" pattern="[[rootPath]]:page/:postId" data="{{routeData}}" tail="{{subroute}}"></app-route>
+        <app-route route="{{route}}" pattern="/:postId" data="{{routeData}}" tail="{{subroute}}"></app-route>
 
         <iron-ajax auto url="https://polymer-101-workshop.cleverapps.io/api/blogpost/{{routeData.postId}}" handle-as="json" on-response="handleResponse">
         </iron-ajax>
@@ -38,8 +36,12 @@
 
                 </div>
                 <div class="card-actions justified">
-                    <paper-button raised on-click="save"><iron-icon icon="save"></iron-icon></paper-button>
-                    <paper-button raised on-click="toggleEdit" class="red"><iron-icon icon="cancel"></iron-icon></paper-button>
+                    <paper-button raised on-click="save">
+                        <iron-icon icon="save"></iron-icon>
+                    </paper-button>
+                    <paper-button raised on-click="toggleEdit" class="red">
+                        <iron-icon icon="cancel"></iron-icon>
+                    </paper-button>
                 </div>
             </paper-card>
         </template>
@@ -51,9 +53,15 @@
                 </div>
                 <div class="card-actions justified">
                     <span>Written by [[blogPost.autor]]</span>
-                    <paper-button raised on-click="toggleEdit"><iron-icon icon="editor:mode-edit"></iron-icon></paper-button>
-                    <paper-button raised on-click="delete" class="red"><iron-icon icon="delete"></iron-icon></paper-button>
-                    <paper-button raised on-click="goBack" class="green"><iron-icon icon="home"></iron-icon></paper-button>
+                    <paper-button raised on-click="toggleEdit">
+                        <iron-icon icon="editor:mode-edit"></iron-icon>
+                    </paper-button>
+                    <paper-button raised on-click="delete" class="red">
+                        <iron-icon icon="delete"></iron-icon>
+                    </paper-button>
+                    <paper-button raised on-click="goBackToLanding" class="green">
+                        <iron-icon icon="home"></iron-icon>
+                    </paper-button>
                 </div>
             </paper-card>
 
@@ -64,6 +72,12 @@
     <script>
         class BlogDetail extends Polymer.Element {
             static get is() { return 'blog-detail'; }
+
+            static get properties() {
+                return {
+                    route: Object,
+                };
+            }
 
             handleResponse(resp) {
                 this.blogPost = resp.detail.response;
@@ -86,7 +100,7 @@
                     headers: { "Content-Type": "application/json" }
                 })
                     .then((response) => this.checkStatus(response))
-                    .then(() => this.set('route.path', '/landing'))
+                    .then(() => this.goBackToLanding())
                     .catch(error => new Error(error));
             }
 
@@ -97,7 +111,7 @@
                     headers: { "Content-Type": "application/json" }
                 })
                     .then((response) => this.checkStatus(response))
-                    .then(() => this.set('route.path', '/detail/' + this.blogPost._id))
+                    .then(() => this.goBackToLanding())
                     .catch(error => new Error(error));
             }
 
@@ -108,8 +122,9 @@
                 return Promise.reject(new Error(response.satusText));
             }
 
-            goBack() {
-                this.set('route.path', '/landing');
+            goBackToLanding() {
+                window.history.pushState({}, null, '/landing');
+                window.dispatchEvent(new CustomEvent('location-changed'));
             }
 
         }
