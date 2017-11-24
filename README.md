@@ -71,7 +71,7 @@ Take a moment to discover the PSK:
 
 ## Step 2 - The langing page - part 1
 We will start by creating a page that list all the Blog Post's.  
-We will retrieve the data making a GET request on[https://polymer-101-workshop.cleverapps.io/api/blogpost](https://polymer-101-workshop.cleverapps.io/api/blogpost) (using the Fetch API).  
+We will retrieve the data making a GET request on [https://polymer-101-workshop.cleverapps.io/api/blogpost](https://polymer-101-workshop.cleverapps.io/api/blogpost) (using the Fetch API).  
 
 The data will be displayed in a [`paper-card` element](https://www.webcomponents.org/element/PolymerElements/paper-card)
 (in your terminal do a `bower i --save paper-card`)
