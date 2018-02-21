@@ -3,11 +3,10 @@ A workshop to discover Polymer 2 and some PWA principles.
 
 ## Setup:  
 For this workshop you need to have the following tools :
-- Node.js (6.x or 8.x)
+- [Node.js (6.x or 8.x)](https://nodejs.org/fr/) 
 - Polymer-cli (npm install -g polymer-cli / yarn global add polymer-cli)
-- An IDE (Webstorm, Atom or Visual Studio Code [with the Polymer-IDE extension])
+- An IDE (Webstorm, Atom or [Visual Studio Code](https://code.visualstudio.com/)
 - Google Chrome ( stable or later) or Chromium
-- Lighthouse plug-in for Chrome
 
 ## Workshop goal
 The goal of this workshop is to discover Polymer 2 and the PWA principles by building a Blog site.  
@@ -69,14 +68,14 @@ Take a moment to discover the PSK:
 
 ![app-build-components](imgs/app-build-components.png)
 
-## Step 2 - The langing page - part 1
+## Step 2 - The landing page - part 1
 We will start by creating a page that list all the Blog Post's.  
 We will retrieve the data making a GET request on [https://polymer-101-workshop.cleverapps.io/api/blogpost](https://polymer-101-workshop.cleverapps.io/api/blogpost) (using the Fetch API).  
 
 The data will be displayed in a [`paper-card` element](https://www.webcomponents.org/element/PolymerElements/paper-card)
 (in your terminal do a `bower i --save paper-card`)
 
-## Step 3 - The langing page - part 2  
+## Step 3 - The landing page - part 2  
 Now that we have some data we will do some refactoring.
 To avoid that our page start to do to much things (fetching the data, handling its display, ...) we will start some refactoring.  
 We will extract the display part in a new component called `blog-article-lite`.  
