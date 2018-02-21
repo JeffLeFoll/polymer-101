@@ -4,7 +4,7 @@ A workshop to discover Polymer 2 and some PWA principles.
 ## Setup:  
 For this workshop you need to have the following tools :
 - [Node.js (6.x or 8.x)](https://nodejs.org/fr/) 
-- Polymer-cli (npm install -g polymer-cli / yarn global add polymer-cli)
+- Polymer-cli (**npm install -g polymer-cli** / yarn global add polymer-cli)
 - An IDE (Webstorm, Atom or [Visual Studio Code](https://code.visualstudio.com/)
 - Google Chrome ( stable or later) or Chromium
 
