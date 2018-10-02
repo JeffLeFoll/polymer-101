@@ -24,11 +24,10 @@ In this workshop you will learn to:
 The REST API is located here [https://polymer-101-workshop.cleverapps.io/api/blogpost](https://polymer-101-workshop.cleverapps.io/api/blogpost) (unavailable outside workshop event, check the source code if you need it).  
 The API exposes the folowing ressources: 
 ```
-GET    / 
 GET    /api/blogpost 
 POST   /api/blogpost
-PUT    /api/blogpost 
 GET    /api/blogpost/:id
+PUT    /api/blogpost/:id
 DELETE /api/blogpost/:id 
 GET    /api/blogpost/autor/:name 
 GET    /api/blogpost/:blogId/comment 
